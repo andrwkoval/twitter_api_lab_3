@@ -1,5 +1,4 @@
 from geopy import ArcGIS
-import tw_json_loader
 
 
 def analysis(key, data):
@@ -23,7 +22,8 @@ def analysis(key, data):
         if key == "name":
             result.append(info[key])
         if key == "location":
-            result.append((loc_coords(info[key]), info["name"]))
+            result.append((info["name"], loc_coords(info[key]),
+                           info["profile_image_url"]))
         elif key == "status":
             result.append((info[key]["text"], info["name"]))
         else:
@@ -46,11 +46,6 @@ def loc_coords(location):
         geolocator = ArcGIS(timeout=10)
         locat = geolocator.geocode(location)
         return locat.latitude, locat.longitude
-
-
-a = tw_json_loader.get_js_data("King_Koval")
-print(analysis("location", a))
-
 
 
 

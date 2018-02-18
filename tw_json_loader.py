@@ -1,10 +1,12 @@
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import twurl
 import json
 import ssl
 
 
-def get_js_data(username):
+def get_js_data(username, users):
 
     TWITTER_URL = 'https://api.twitter.com/1.1/friends/list.json'
 
@@ -13,7 +15,7 @@ def get_js_data(username):
     ctx.verify_mode = ssl.CERT_NONE
 
     url = twurl.augment(TWITTER_URL,
-                        {'screen_name': username, 'count': '5'})
+                        {'screen_name': username, 'count': '{}'.format(users)})
 
     connection = urllib.request.urlopen(url, context=ctx)
     data = connection.read().decode()
