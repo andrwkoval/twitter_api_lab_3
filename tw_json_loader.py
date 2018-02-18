@@ -20,6 +20,3 @@ def get_js_data(username):
     js = json.loads(data, encoding="utf-8")
 
     return js
-
-
-print(get_js_data("King_Koval"))
