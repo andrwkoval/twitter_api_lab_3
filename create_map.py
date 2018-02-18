@@ -4,7 +4,7 @@ import tw_json_loader as tjl
 import json_analysis as ja
 
 
-def create_map(username):
+def create_map(username, count):
     """
 
     :param username:
@@ -14,7 +14,7 @@ def create_map(username):
     world_map = folium.Map()
     groups = folium.plugins.MarkerCluster().add_to(world_map)
 
-    data = tjl.get_js_data(username, 100)
+    data = tjl.get_js_data(username, count)
     info_list = ja.analysis("location", data)
 
     for user in info_list:
@@ -25,4 +25,4 @@ def create_map(username):
 
     world_map.add_child(folium.LayerControl())
 
-    return world_map.save("Map.html")
+    return world_map.save("templates/Map.html")

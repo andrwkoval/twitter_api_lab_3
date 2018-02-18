@@ -11,7 +11,7 @@ def analysis(key, data):
 
     keys = ["id", "name", "screen_name", "location","description",
             "followers_count", "friends_count", "created_at",
-            "favorites_count", "time_zone", "lang", "status"]
+            "favorites_count", "time_zone", "lang"]
     result = []
 
     if key not in keys:
@@ -21,11 +21,9 @@ def analysis(key, data):
     for info in data['users']:
         if key == "name":
             result.append(info[key])
-        if key == "location":
+        elif key == "location":
             result.append((info["name"], loc_coords(info[key]),
                            info["profile_image_url"]))
-        elif key == "status":
-            result.append((info[key]["text"], info["name"]))
         else:
             result.append((info[key], info["name"]))
 
