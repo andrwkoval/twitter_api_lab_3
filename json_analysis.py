@@ -1,12 +1,15 @@
 from geopy import ArcGIS
+from random import randint
 
 
 def analysis(key, data):
     """
-
-    :param key:
-    :param data:
-    :return:
+    (str, json(dict)) -> (list)
+    This function filters and saves exact information about each
+    user`s friend in the data
+    key: a key which is used while filtering data
+    data: json data about user`s friends
+    returns: list of specific information about each user
     """
 
     keys = ["id", "name", "screen_name", "location","description",
@@ -40,10 +43,15 @@ def loc_coords(location):
     returns: tuple of latitude and longitude
     """
 
-    if location:
-        geolocator = ArcGIS(timeout=10)
-        locat = geolocator.geocode(location)
-        return locat.latitude, locat.longitude
+    try:
+        if location:
+            geolocator = ArcGIS(timeout=10)
+            locat = geolocator.geocode(location)
+            return locat.latitude, locat.longitude
+
+    except AttributeError:
+        print("Unreal location")
+        return randint(1, 100), randint(1, 100)
 
 
 

@@ -7,6 +7,14 @@ import ssl
 
 
 def get_js_data(username, users):
+    """
+    (str, int) -> json(dict)
+    This function gets twitter username and amount of friends to
+    display and creates json file with information about user friends.
+    username: twitter username
+    users: amount of users to be displayed
+    returns: json data with information about user friends
+    """
 
     TWITTER_URL = 'https://api.twitter.com/1.1/friends/list.json'
 

@@ -6,9 +6,11 @@ import json_analysis as ja
 
 def create_map(username, count):
     """
-
-    :param username:
-    :return:
+    (str, int) -> (html)
+    This function creates map using username and amount of friends
+    username: twitter username to get info
+    count: number of friends to be displayed
+    returns: map with friends markers
     """
 
     world_map = folium.Map()
