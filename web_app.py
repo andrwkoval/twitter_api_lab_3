@@ -24,10 +24,13 @@ def application():
     returns: html map with markers of user`s friends
     """
 
-    if request.form['name'] and request.form['counter']:
-        int(request.form['counter'])
-        cm.create_map(request.form['name'], request.form['counter'])
-        return render_template("Map.html")
+    try:
+        if request.form['name'] and request.form['counter']:
+            int(request.form['counter'])
+            cm.create_map(request.form['name'], request.form['counter'])
+            return render_template("Map.html")
+    except ValueError:
+        return render_template("error.html")
 
 
 if __name__ == "__main__":
