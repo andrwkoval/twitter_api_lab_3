@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import create_map as cm
+from urllib.error import HTTPError
 
 app = Flask(__name__)
 
@@ -25,11 +26,13 @@ def application():
     """
 
     try:
-        if request.form['name'] and request.form['counter']:
+        if not request.form['name'] or not request.form['counter']:
+            raise ValueError
+        elif request.form['name'] and request.form['counter']:
             int(request.form['counter'])
             cm.create_map(request.form['name'], request.form['counter'])
             return render_template("Map.html")
-    except ValueError:
+    except (ValueError, HTTPError):
         return render_template("error.html")
 
 

@@ -12,7 +12,6 @@ def create_map(username, count):
     count: number of friends to be displayed
     returns: map with friends markers
     """
-
     world_map = folium.Map()
     groups = folium.plugins.MarkerCluster().add_to(world_map)
 
